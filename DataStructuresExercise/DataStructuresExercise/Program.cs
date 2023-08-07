@@ -72,7 +72,7 @@
             result = tree.Contains(8);
         }
 
-        private void Heaps()
+        public void Heaps()
         {
             //MaxHeap<int> maxHeap = new MaxHeap<int>();
             //maxHeap.Add(10);

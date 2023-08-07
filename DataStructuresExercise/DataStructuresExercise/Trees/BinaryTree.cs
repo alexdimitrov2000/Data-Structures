@@ -46,17 +46,11 @@
 
         public void ForEachInOrder(Action<T> action)
         {
-            if (left is not null)
-            {
-                left.ForEachInOrder(action);
-            }
+            left?.ForEachInOrder(action);
 
             action.Invoke(Value);
 
-            if (right is not null)
-            {
-                right.ForEachInOrder(action);
-            }
+            right?.ForEachInOrder(action);
         }
 
         public IEnumerable<IAbstractBinaryTree<T>> PreOrder() // Root, Left, Right
