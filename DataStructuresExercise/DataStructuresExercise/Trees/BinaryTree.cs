@@ -1,4 +1,4 @@
-﻿namespace DataStructuresExercise
+﻿namespace DataStructuresExercise.Trees
 {
     using Contracts;
     using System.Text;
@@ -19,17 +19,17 @@
             this.right = right;
         }
 
-        public T Value => this.value;
+        public T Value => value;
 
-        public IAbstractBinaryTree<T> LeftChild => this.left;
+        public IAbstractBinaryTree<T> LeftChild => left;
 
-        public IAbstractBinaryTree<T> RightChild => this.right;
+        public IAbstractBinaryTree<T> RightChild => right;
 
         public string AsIndentedPreOrder(int indent)
         {
             StringBuilder builder = new StringBuilder();
 
-            this.IndentationHelper(builder, indent, this);
+            IndentationHelper(builder, indent, this);
 
             return builder.ToString();
         }
@@ -39,23 +39,23 @@
             if (binaryTree is not null)
             {
                 builder.Append(new string(' ', indent)).AppendLine(binaryTree.Value!.ToString());
-                this.IndentationHelper(builder, indent + 2, binaryTree.LeftChild);
-                this.IndentationHelper(builder, indent + 2, binaryTree.RightChild);
+                IndentationHelper(builder, indent + 2, binaryTree.LeftChild);
+                IndentationHelper(builder, indent + 2, binaryTree.RightChild);
             }
         }
 
         public void ForEachInOrder(Action<T> action)
         {
-            if (this.left is not null)
+            if (left is not null)
             {
-                this.left.ForEachInOrder(action);
+                left.ForEachInOrder(action);
             }
-            
-            action.Invoke(this.Value);
 
-            if (this.right is not null)
+            action.Invoke(Value);
+
+            if (right is not null)
             {
-                this.right.ForEachInOrder(action);
+                right.ForEachInOrder(action);
             }
         }
 
@@ -65,13 +65,13 @@
             List<IAbstractBinaryTree<T>> result = new List<IAbstractBinaryTree<T>>();
 
             result.Add(this);
-            if (this.left is not null)
+            if (left is not null)
             {
-                result.AddRange(this.left.PreOrder());
+                result.AddRange(left.PreOrder());
             }
-            if (this.right is not null)
+            if (right is not null)
             {
-                result.AddRange(this.right.PreOrder());
+                result.AddRange(right.PreOrder());
             }
 
             return result;
@@ -82,8 +82,8 @@
             if (binaryTree is not null)
             {
                 list.Add(binaryTree);
-                this.PreOrderHelper(list, binaryTree.LeftChild);
-                this.PreOrderHelper(list, binaryTree.RightChild);
+                PreOrderHelper(list, binaryTree.LeftChild);
+                PreOrderHelper(list, binaryTree.RightChild);
             }
 
             return list;
@@ -93,16 +93,16 @@
         {
             List<IAbstractBinaryTree<T>> result = new List<IAbstractBinaryTree<T>>();
 
-            if (this.left is not null)
+            if (left is not null)
             {
-                result.AddRange(this.left.PreOrder());
+                result.AddRange(left.PreOrder());
             }
 
             result.Add(this);
 
-            if (this.right is not null)
+            if (right is not null)
             {
-                result.AddRange(this.right.PreOrder());
+                result.AddRange(right.PreOrder());
             }
 
             return result;
@@ -112,13 +112,13 @@
         {
             List<IAbstractBinaryTree<T>> result = new List<IAbstractBinaryTree<T>>();
 
-            if (this.left is not null)
+            if (left is not null)
             {
-                result.AddRange(this.left.PreOrder());
+                result.AddRange(left.PreOrder());
             }
-            if (this.right is not null)
+            if (right is not null)
             {
-                result.AddRange(this.right.PreOrder());
+                result.AddRange(right.PreOrder());
             }
             result.Add(this);
 

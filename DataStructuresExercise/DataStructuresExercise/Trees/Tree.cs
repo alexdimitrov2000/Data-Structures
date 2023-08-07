@@ -1,6 +1,7 @@
-﻿namespace DataStructuresExercise
+﻿namespace DataStructuresExercise.Trees
 {
     using Contracts;
+    using DataStructuresExercise;
 
     public class Tree<T> : IAbstractTree<T>
     {
@@ -11,8 +12,8 @@
         public Tree(T value)
         {
             this.value = value;
-            this.parent = default;
-            this.children = new List<Tree<T>>();
+            parent = default;
+            children = new List<Tree<T>>();
         }
 
         public Tree(T value, params Tree<T>[] children) : this(value)
@@ -24,15 +25,15 @@
             }
         }
 
-        public T Value => this.value;
+        public T Value => value;
 
-        public Tree<T>? Parent => this.parent;
+        public Tree<T>? Parent => parent;
 
-        public IReadOnlyCollection<Tree<T>> Children => this.children.AsReadOnly();
+        public IReadOnlyCollection<Tree<T>> Children => children.AsReadOnly();
 
         public void AddChild(T parent, Tree<T> child)
         {
-            Tree<T> parentNode = this.GetByValue(parent);
+            Tree<T> parentNode = GetByValue(parent);
 
             if (parentNode is null)
             {
@@ -88,7 +89,7 @@
 
         public IEnumerable<T> OrderDfs()
         {
-            var result = this.RecursiveDfs(new List<T>(), this);
+            var result = RecursiveDfs(new List<T>(), this);
             return result;
         }
 
@@ -105,7 +106,7 @@
 
         public void RemoveNode(T nodeKey)
         {
-            Tree<T> node = this.GetByValue(nodeKey);
+            Tree<T> node = GetByValue(nodeKey);
 
             if (node is null)
             {
@@ -123,8 +124,8 @@
 
         public void Swap(T firstKey, T secondKey)
         {
-            Tree<T> firstChild = this.GetByValue(firstKey);
-            Tree<T> secondChild = this.GetByValue(secondKey);
+            Tree<T> firstChild = GetByValue(firstKey);
+            Tree<T> secondChild = GetByValue(secondKey);
 
             if (firstChild is null || secondChild is null)
             {

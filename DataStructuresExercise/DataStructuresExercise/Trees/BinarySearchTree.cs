@@ -1,4 +1,4 @@
-﻿namespace DataStructuresExercise
+﻿namespace DataStructuresExercise.Trees
 {
     using Contracts;
     using System.Xml.Linq;
@@ -12,9 +12,9 @@
 
             public Node(T value, Node left, Node right)
             {
-                this.Value = value;
-                this.Left = left;
-                this.Right = right;
+                Value = value;
+                Left = left;
+                Right = right;
             }
 
             public T Value { get; set; }
@@ -28,17 +28,17 @@
 
         public BinarySearchTree()
         {
-            this.current = default;
+            current = default;
         }
 
         public BinarySearchTree(T value)
         {
-            this.current = new Node(value);
+            current = new Node(value);
         }
 
         private BinarySearchTree(Node node)
         {
-            this.current = node;
+            current = node;
         }
 
         private Node FindNodeByValue(T value, Node current)
@@ -57,25 +57,25 @@
 
             if (comparison < 0)
             {
-                return this.FindNodeByValue(value, current.Right);
+                return FindNodeByValue(value, current.Right);
             }
 
-            return this.FindNodeByValue(value, current.Left);
+            return FindNodeByValue(value, current.Left);
         }
 
         public bool Contains(T element)
         {
-            if (this.current is null)
+            if (current is null)
             {
                 throw new InvalidOperationException();
             }
 
-            return this.FindNodeByValue(element, this.current) is not null;
+            return FindNodeByValue(element, current) is not null;
         }
 
         public void EachInOrder(Action<T> action)
         {
-            this.EachInOrder(action, this.current);
+            EachInOrder(action, current);
         }
 
         private void EachInOrder(Action<T> action, Node current)
@@ -85,14 +85,14 @@
                 return;
             }
 
-            this.EachInOrder(action, current.Left);
+            EachInOrder(action, current.Left);
             action.Invoke(current.Value);
-            this.EachInOrder(action, current.Right);
+            EachInOrder(action, current.Right);
         }
 
         public void Insert(T element)
         {
-            this.current = this.InsertHelper(this.current, element);
+            current = InsertHelper(current, element);
             return;
         }
 
@@ -106,11 +106,11 @@
 
             if (node.Value.CompareTo(element) < 0)
             {
-                node.Right = this.InsertHelper(node.Right, element);
+                node.Right = InsertHelper(node.Right, element);
             }
             else if (node.Value.CompareTo(element) > 0)
             {
-                node.Left = this.InsertHelper(node.Left, element);
+                node.Left = InsertHelper(node.Left, element);
             }
 
             return node;
@@ -118,7 +118,7 @@
 
         public IBinarySearchTree<T> Search(T element)
         {
-            Node node = this.FindNodeByValue(element, this.current);
+            Node node = FindNodeByValue(element, current);
             return node is null ? default : new BinarySearchTree<T>(node);
         }
     }

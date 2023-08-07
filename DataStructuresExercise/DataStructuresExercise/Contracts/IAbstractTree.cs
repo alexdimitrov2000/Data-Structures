@@ -1,4 +1,6 @@
-﻿namespace DataStructuresExercise.Contracts
+﻿using DataStructuresExercise.Trees;
+
+namespace DataStructuresExercise.Contracts
 {
     public interface IAbstractTree<T>
     {

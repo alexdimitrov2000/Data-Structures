@@ -1,13 +1,9 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using System;
-using DataStructuresExercise.Contracts;
-using DataStructuresExercise;
-using IntList = System.Collections.Generic.List<int>;
-
-namespace Tests
+﻿namespace Tests
 {
+    using NUnit.Framework;
+    using DataStructuresExercise.Trees;
+    using DataStructuresExercise.Contracts;
+
     [TestFixture]
     public class BinarySearchTreeTests
     {
@@ -17,7 +13,7 @@ namespace Tests
             BinarySearchTree<int> bst = new BinarySearchTree<int>();
             bst.Insert(1);
 
-            IntList nodes = new IntList();
+            List<int> nodes = new List<int>();
             bst.EachInOrder(nodes.Add);
 
             int[] expectedNodes = new int[] { 1 };
@@ -32,7 +28,7 @@ namespace Tests
             bst.Insert(1);
             bst.Insert(3);
 
-            IntList nodes = new IntList();
+            List<int> nodes = new List<int>();
             bst.EachInOrder(nodes.Add);
 
             int[] expectedNodes = new int[] { 1, 2, 3 };
@@ -92,7 +88,7 @@ namespace Tests
             bst.Insert(45);
 
             IBinarySearchTree<int> result = bst.Search(5);
-            IntList nodes = new IntList();
+            List<int> nodes = new List<int>();
             result.EachInOrder(nodes.Add);
 
             int[] expectedNodes = new int[] { 1, 3, 4, 5, 8, 9 };

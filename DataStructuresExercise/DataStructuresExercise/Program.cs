@@ -1,5 +1,6 @@
 ﻿namespace DataStructuresExercise
 {
+    using Trees;
     using Contracts;
     using System.Text;
 
