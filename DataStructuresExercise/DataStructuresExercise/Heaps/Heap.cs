@@ -1,26 +1,26 @@
-﻿namespace DataStructuresExercise
+﻿namespace DataStructuresExercise.Heaps
 {
     using Contracts;
 
     public abstract class Heap<T> : IAbstractHeap<T> where T : IComparable<T>
     {
-        protected System.Collections.Generic.List<T> elements;
+        protected List<T> elements;
 
-        protected Heap() : this(new System.Collections.Generic.List<T>())
+        protected Heap() : this(new List<T>())
         { }
 
-        protected Heap(System.Collections.Generic.List<T> elements)
+        protected Heap(List<T> elements)
         {
             this.elements = elements;
         }
 
-        public int Size => this.elements.Count;
+        public int Size => elements.Count;
 
         protected void Swap(int firstIndex, int secondIndex)
         {
-            T temp = this.elements[firstIndex];
-            this.elements[firstIndex] = this.elements[secondIndex];
-            this.elements[secondIndex] = temp;
+            T temp = elements[firstIndex];
+            elements[firstIndex] = elements[secondIndex];
+            elements[secondIndex] = temp;
 
             //(this.elements[firstIndex], this.elements[secondIndex]) = (this.elements[secondIndex], this.elements[firstIndex]); // equivalent swap
         }
@@ -32,7 +32,7 @@
         /// <returns></returns>
         protected bool IsIndexValid(int index)
         {
-            return index >= 0 && index < this.elements.Count;
+            return index >= 0 && index < elements.Count;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@
         /// <returns></returns>
         public bool IsGreater(int leftOperandIndex, int rightOperandIndex)
         {
-            return this.elements[leftOperandIndex].CompareTo(this.elements[rightOperandIndex]) > 0;
+            return elements[leftOperandIndex].CompareTo(elements[rightOperandIndex]) > 0;
         }
 
         protected int GetLeftChildIndex(int elementIndex)
@@ -65,12 +65,12 @@
 
         public T Peek()
         {
-            if (this.elements.Count == 0)
+            if (elements.Count == 0)
             {
                 throw new InvalidOperationException();
             }
 
-            return this.elements[0];
+            return elements[0];
         }
     }
 }

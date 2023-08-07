@@ -3,6 +3,7 @@
     using Trees;
     using Contracts;
     using System.Text;
+    using DataStructuresExercise.Heaps;
 
     internal class Program
     {

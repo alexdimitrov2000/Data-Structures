@@ -1,7 +1,7 @@
 ﻿namespace Tests
 {
     using NUnit.Framework;
-    using DataStructuresExercise;
+    using DataStructuresExercise.Heaps;
 
     [TestFixture]
     public class MaxHeapTests
