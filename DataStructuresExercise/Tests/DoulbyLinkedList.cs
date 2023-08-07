@@ -4,7 +4,7 @@
     using System.Linq;
     using NUnit.Framework;
     using System.Reflection;
-    using DataStructuresExercise;
+    using DataStructuresExercise.Lists;
     using DataStructuresExercise.Contracts;
 
     [TestFixture]

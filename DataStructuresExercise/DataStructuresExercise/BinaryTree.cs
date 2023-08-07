@@ -1,8 +1,6 @@
 ﻿namespace DataStructuresExercise
 {
     using Contracts;
-    using System;
-    using System.Collections.Generic;
     using System.Text;
 
     public class BinaryTree<T> : IAbstractBinaryTree<T>
@@ -64,7 +62,7 @@
         public IEnumerable<IAbstractBinaryTree<T>> PreOrder() // Root, Left, Right
         {
             //List<IAbstractBinaryTree<T>> result = this.PreOrderHelper(new List<IAbstractBinaryTree<T>>(), this); // one way
-            System.Collections.Generic.List<IAbstractBinaryTree<T>> result = new System.Collections.Generic.List<IAbstractBinaryTree<T>>();
+            List<IAbstractBinaryTree<T>> result = new List<IAbstractBinaryTree<T>>();
 
             result.Add(this);
             if (this.left is not null)
@@ -93,7 +91,7 @@
 
         public IEnumerable<IAbstractBinaryTree<T>> InOrder() // Left, Root, Right
         {
-            System.Collections.Generic.List<IAbstractBinaryTree<T>> result = new System.Collections.Generic.List<IAbstractBinaryTree<T>>();
+            List<IAbstractBinaryTree<T>> result = new List<IAbstractBinaryTree<T>>();
 
             if (this.left is not null)
             {
@@ -112,7 +110,7 @@
 
         public IEnumerable<IAbstractBinaryTree<T>> PostOrder() // Left, Right, Root
         {
-            System.Collections.Generic.List<IAbstractBinaryTree<T>> result = new System.Collections.Generic.List<IAbstractBinaryTree<T>>();
+            List<IAbstractBinaryTree<T>> result = new List<IAbstractBinaryTree<T>>();
 
             if (this.left is not null)
             {

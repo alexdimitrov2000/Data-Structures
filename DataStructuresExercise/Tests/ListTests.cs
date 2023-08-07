@@ -14,12 +14,12 @@
         [SetUp]
         public void InitializeList()
         {
-            this.list = new DataStructuresExercise.List<int>();
+            this.list = new DataStructuresExercise.Lists.List<int>();
         }
 
         private static IEnumerable<int[]> RandomCollections()
         {
-            var collections = new System.Collections.Generic.List<int[]>
+            var collections = new List<int[]>
             {
                 new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
                 new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 },

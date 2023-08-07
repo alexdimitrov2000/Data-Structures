@@ -3,7 +3,7 @@
     using System;
     using NUnit.Framework;
     using System.Linq;
-    using DataStructuresExercise;
+    using DataStructuresExercise.Lists;
     using DataStructuresExercise.Contracts;
 
     [TestFixture]

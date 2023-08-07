@@ -1,19 +1,18 @@
 ﻿namespace DataStructuresExercise
 {
     using Contracts;
-    using System.Collections.Generic;
 
     public class Tree<T> : IAbstractTree<T>
     {
         private T value;
         private Tree<T>? parent;
-        private System.Collections.Generic.List<Tree<T>> children;
+        private List<Tree<T>> children;
 
         public Tree(T value)
         {
             this.value = value;
             this.parent = default;
-            this.children = new System.Collections.Generic.List<Tree<T>>();
+            this.children = new List<Tree<T>>();
         }
 
         public Tree(T value, params Tree<T>[] children) : this(value)

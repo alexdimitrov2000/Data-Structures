@@ -1,4 +1,4 @@
-﻿namespace DataStructuresExercise
+﻿namespace DataStructuresExercise.Lists
 {
     using Contracts;
     using System.Collections;
@@ -27,28 +27,28 @@
         private Node top;
         private int count;
 
-        public int Count => this.count;
+        public int Count => count;
 
         public void AddFirst(T item)
         {
-            Node newNode = new Node(item, null, this.top);
-            if (this.top is not null)
+            Node newNode = new Node(item, null, top);
+            if (top is not null)
             {
-                this.top.Previous = newNode;
+                top.Previous = newNode;
             }
-            this.top = newNode;
-            this.count++;
+            top = newNode;
+            count++;
         }
 
         public void AddLast(T item)
         {
-            if (this.top is null)
+            if (top is null)
             {
-                this.top = new Node(item);
+                top = new Node(item);
             }
             else
             {
-                Node current = this.top;
+                Node current = top;
 
                 while (current.Next is not null)
                 {
@@ -57,27 +57,27 @@
 
                 current.Next = new Node(item, current, null);
             }
-            this.count++;
+            count++;
         }
 
         public T GetFirst()
         {
-            if (this.top is null)
+            if (top is null)
             {
                 throw new InvalidOperationException();
             }
 
-            return this.top.Value;
+            return top.Value;
         }
 
         public T GetLast()
         {
-            if (this.top is null)
+            if (top is null)
             {
                 throw new InvalidOperationException();
             }
 
-            Node current = this.top;
+            Node current = top;
 
             while (current.Next is not null)
             {
@@ -89,46 +89,46 @@
 
         public T RemoveFirst()
         {
-            if (this.top is null)
+            if (top is null)
             {
                 throw new InvalidOperationException();
             }
 
-            if (this.top.Next is null)
+            if (top.Next is null)
             {
-                T value = this.top.Value;
-                this.top = null;
-                this.count--;
+                T value = top.Value;
+                top = null;
+                count--;
 
                 return value;
             }
 
-            Node oldTop = this.top;
-            this.top = this.top.Next;
+            Node oldTop = top;
+            top = top.Next;
             oldTop.Next = null;
-            this.top.Previous = null;
-            this.count--;
+            top.Previous = null;
+            count--;
 
             return oldTop.Value;
         }
 
         public T RemoveLast()
         {
-            if (this.top is null)
+            if (top is null)
             {
                 throw new InvalidOperationException();
             }
 
-            if (this.top.Next is null)
+            if (top.Next is null)
             {
-                T value = this.top.Value;
-                this.top = null;
-                this.count--;
+                T value = top.Value;
+                top = null;
+                count--;
 
                 return value;
             }
 
-            Node current = this.top;
+            Node current = top;
             while (current.Next is not null)
             {
                 current = current.Next;
@@ -136,14 +136,14 @@
 
             current.Previous.Next = null;
             current.Previous = null;
-            this.count--;
+            count--;
 
             return current.Value;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            Node current = this.top;
+            Node current = top;
 
             while (current is not null)
             {
@@ -152,6 +152,6 @@
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DataStructuresExercise
+﻿namespace DataStructuresExercise.Lists
 {
     using Contracts;
     using System.Collections;
@@ -17,33 +17,33 @@
 
             public Node(T value, Node next)
             {
-                this.Value = value;
-                this.Next = next;
+                Value = value;
+                Next = next;
             }
         }
 
         private Node top;
         private int count;
 
-        public int Count => this.count;
+        public int Count => count;
 
         public void AddFirst(T item)
         {
-            Node newNode = new Node(item, this.top);
-            this.top = newNode;
-            this.count++;
+            Node newNode = new Node(item, top);
+            top = newNode;
+            count++;
         }
 
         public void AddLast(T item)
         {
-            if (this.top is null)
+            if (top is null)
             {
-                this.top = new Node(item);
-                this.count++;
+                top = new Node(item);
+                count++;
                 return;
             }
 
-            Node current = this.top;
+            Node current = top;
 
             while (current.Next is not null)
             {
@@ -51,27 +51,27 @@
             }
 
             current.Next = new Node(item);
-            this.count++;
+            count++;
         }
 
         public T GetFirst()
         {
-            if (this.top is null)
+            if (top is null)
             {
                 throw new InvalidOperationException();
             }
 
-            return this.top.Value;
+            return top.Value;
         }
 
         public T GetLast()
         {
-            if (this.top is null)
+            if (top is null)
             {
                 throw new InvalidOperationException();
             }
 
-            Node current = this.top;
+            Node current = top;
 
             while (current.Next is not null)
             {
@@ -83,35 +83,35 @@
 
         public T RemoveFirst()
         {
-            if (this.top is null)
+            if (top is null)
             {
                 throw new InvalidOperationException();
             }
 
-            Node oldTop = this.top;
-            this.top = this.top.Next;
-            this.count--;
+            Node oldTop = top;
+            top = top.Next;
+            count--;
 
             return oldTop.Value;
         }
 
         public T RemoveLast()
         {
-            if (this.top is null)
+            if (top is null)
             {
                 throw new InvalidOperationException();
             }
 
-            if (this.top.Next is null)
+            if (top.Next is null)
             {
-                T value = this.top.Value;
-                this.top = null;
-                this.count--;
+                T value = top.Value;
+                top = null;
+                count--;
 
                 return value;
             }
 
-            Node current = this.top;
+            Node current = top;
 
             while (current.Next.Next is not null)
             {
@@ -121,14 +121,14 @@
             Node lastElement = current.Next;
             current.Next = null;
 
-            this.count--;
+            count--;
 
             return lastElement.Value;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            Node current = this.top;
+            Node current = top;
 
             while (current is not null)
             {
@@ -138,6 +138,6 @@
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DataStructuresExercise
+﻿namespace DataStructuresExercise.Lists
 {
     using Contracts;
     using System.Collections;
@@ -19,15 +19,15 @@
                 throw new ArgumentOutOfRangeException(nameof(capacity));
             }
 
-            this.items = new T[capacity];
-            this.count = 0;
+            items = new T[capacity];
+            count = 0;
         }
 
         public T this[int index]
         {
             get
             {
-                if (index < 0 || index >= this.count)
+                if (index < 0 || index >= count)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -36,39 +36,39 @@
             }
             set
             {
-                if (index < 0 || index >= this.count)
+                if (index < 0 || index >= count)
                 {
                     throw new IndexOutOfRangeException();
                 }
 
-                this.items[index] = value;
+                items[index] = value;
             }
         }
 
-        public int Count => this.count;
+        public int Count => count;
 
         public void Add(T item)
         {
-            if (this.count == this.items.Length)
+            if (count == items.Length)
             {
-                this.Grow();
+                Grow();
             }
 
-            this.items[this.count++] = item;
+            items[count++] = item;
         }
 
         private void Grow()
         {
-            T[] newList = new T[this.items.Length * 2];
+            T[] newList = new T[items.Length * 2];
 
-            for (int i = 0; i < this.items.Length; i++)
+            for (int i = 0; i < items.Length; i++)
             {
-                newList[i] = this.items[i];
+                newList[i] = items[i];
             }
 
             //Array.Copy(this.items, newList, this.count); // equivalent to the loop above
 
-            this.items = newList;
+            items = newList;
         }
 
         public bool Contains(T item)
@@ -78,7 +78,7 @@
                 throw new ArgumentNullException();
             }
 
-            return this.IndexOf(item) != -1;
+            return IndexOf(item) != -1;
         }
 
         public int IndexOf(T item)
@@ -88,9 +88,9 @@
                 throw new ArgumentNullException();
             }
 
-            for (int i = 0; i < this.count; i++)
+            for (int i = 0; i < count; i++)
             {
-                if (this.items[i]!.Equals(item)) // the symbol ! assures the compiler that this.items[i] is not null
+                if (items[i]!.Equals(item)) // the symbol ! assures the compiler that this.items[i] is not null
                 {
                     return i;
                 }
@@ -101,7 +101,7 @@
 
         public void Insert(int index, T item)
         {
-            if (index < 0 || index >= this.count)
+            if (index < 0 || index >= count)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -111,18 +111,18 @@
                 throw new ArgumentNullException();
             }
 
-            if (this.count == this.items.Length)
+            if (count == items.Length)
             {
-                this.Grow();
+                Grow();
             }
 
-            for (int i = this.count; i > index; i--)
+            for (int i = count; i > index; i--)
             {
-                this.items[i] = this.items[i - 1];
+                items[i] = items[i - 1];
             }
 
-            this.items[index] = item;
-            this.count++;
+            items[index] = item;
+            count++;
         }
 
         public bool Remove(T item)
@@ -132,41 +132,41 @@
                 throw new ArgumentNullException();
             }
 
-            int itemIndex = this.IndexOf(item);
+            int itemIndex = IndexOf(item);
 
             if (itemIndex < 0)
             {
                 return false;
             }
 
-            this.RemoveAt(itemIndex);
+            RemoveAt(itemIndex);
 
             return true;
         }
 
         public void RemoveAt(int index)
         {
-            if (index < 0 || index >= this.count)
+            if (index < 0 || index >= count)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            for (int i = index; i < this.count - 1; i++)
+            for (int i = index; i < count - 1; i++)
             {
-                this.items[i] = this.items[i + 1];
+                items[i] = items[i + 1];
             }
 
-            this.items[--this.count] = default;
+            items[--count] = default;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < this.count; i++)
+            for (int i = 0; i < count; i++)
             {
-                yield return this.items[i];
+                yield return items[i];
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
